@@ -1,6 +1,6 @@
 package com.palm.weather.weatherapp.service.impl;
 
-import com.palm.weather.weatherapp.Exception.IdNotFoundException;
+import com.palm.weather.weatherapp.exception.IdNotFoundException;
 import com.palm.weather.weatherapp.model.City;
 import com.palm.weather.weatherapp.repository.CityRepository;
 import com.palm.weather.weatherapp.service.CityService;

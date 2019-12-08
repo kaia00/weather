@@ -1,10 +1,9 @@
 package com.palm.weather.weatherapp.controller;
 
-import com.palm.weather.weatherapp.Exception.IdNotFoundException;
+import com.palm.weather.weatherapp.exception.IdNotFoundException;
 import com.palm.weather.weatherapp.model.City;
 import com.palm.weather.weatherapp.service.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.DependsOn;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

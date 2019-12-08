@@ -1,4 +1,4 @@
-package com.palm.weather.weatherapp.Exception;
+package com.palm.weather.weatherapp.exception;
 
 public class IdNotFoundException extends Throwable {
 
