@@ -12,7 +12,7 @@ public class City {
     private String name;
 
     @OneToMany
-    @JoinColumn(name = "weather_id")
+    @JoinColumn(name = "city_id")
     private List<Weather> weathers;
 
     public Long getId() {

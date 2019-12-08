@@ -41,6 +41,11 @@ public class CityServiceImpl implements CityService {
     }
 
     @Override
+    public Optional<City> findByName(String name) {
+        return cityRepository.findByName(name);
+    }
+
+    @Override
     public City update(Long id, City city) throws IdNotFoundException {
         Optional<City> cityToUpdate = cityRepository.findById(id);
 

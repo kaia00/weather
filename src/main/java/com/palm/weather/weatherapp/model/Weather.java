@@ -1,5 +1,7 @@
 package com.palm.weather.weatherapp.model;
 
+import org.springframework.lang.Nullable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,7 +18,6 @@ public class Weather {
     private Double humidity;
     private Double windSpeed;
     private LocalDate date;
-    private Long cityId;
 
     public Long getId() {
         return id;
@@ -56,13 +57,5 @@ public class Weather {
 
     public void setDate(LocalDate date) {
         this.date = date;
-    }
-
-    public Long getCityId() {
-        return cityId;
-    }
-
-    public void setCityId(Long cityId) {
-        this.cityId = cityId;
     }
 }

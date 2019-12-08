@@ -4,6 +4,7 @@ import com.palm.weather.weatherapp.Exception.IdNotFoundException;
 import com.palm.weather.weatherapp.model.City;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface CityService {
 
@@ -12,6 +13,8 @@ public interface CityService {
     List<City> findAll();
 
     City findById(Long id) throws IdNotFoundException;
+    
+    Optional<City> findByName(String name); // TODO: 2019-12-08 add exception
 
     City update(Long id, City city) throws IdNotFoundException;
 

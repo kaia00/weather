@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("cities")
 public class CityController {
@@ -18,6 +20,11 @@ public class CityController {
 
     @PostMapping
     public ResponseEntity addCity(@RequestBody City city) {
+        Optional<City> existingCity = cityService.findByName(city.getName());
+
+        if (existingCity.isPresent()) {
+            return new ResponseEntity<>(existingCity.get(), HttpStatus.OK);
+        }
         return new ResponseEntity<>(cityService.add(city), HttpStatus.CREATED);
     }
 
