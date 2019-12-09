@@ -14,17 +14,19 @@ import java.util.Optional;
 @RequestMapping("cities")
 public class CityController {
 
+    private final CityService cityService;
+
     @Autowired
-    private CityService cityService;
+    public CityController(CityService cityService) {
+        this.cityService = cityService;
+    }
 
     @PostMapping
     public ResponseEntity addCity(@RequestBody City city) {
         Optional<City> existingCity = cityService.findByName(city.getName());
 
-        if (existingCity.isPresent()) {
-            return new ResponseEntity<>(existingCity.get(), HttpStatus.OK);
-        }
-        return new ResponseEntity<>(cityService.add(city), HttpStatus.CREATED);
+        return existingCity.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(cityService.add(city), HttpStatus.CREATED));
     }
 
     @GetMapping

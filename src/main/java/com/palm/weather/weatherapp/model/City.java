@@ -11,8 +11,8 @@ public class City {
     private Long id;
     private String name;
 
-    @OneToMany
-    @JoinColumn(name = "city_id")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cityId")
     private List<Weather> weathers;
 
     public Long getId() {
