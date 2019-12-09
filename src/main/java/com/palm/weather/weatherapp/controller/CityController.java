@@ -39,11 +39,6 @@ public class CityController {
         return new ResponseEntity<>(cityService.findById(id), HttpStatus.OK);
     }
 
-    @PatchMapping("/{id}")
-    public ResponseEntity update(@PathVariable Long id, @RequestBody City city) throws IdNotFoundException {
-        return new ResponseEntity<>(cityService.update(id, city), HttpStatus.OK);
-    }
-
     @DeleteMapping("/{id}")
     public ResponseEntity delete(@PathVariable Long id) throws IdNotFoundException {
         return new ResponseEntity<>(cityService.delete(id), HttpStatus.OK);

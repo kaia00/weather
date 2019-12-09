@@ -46,18 +46,6 @@ public class CityServiceImpl implements CityService {
     }
 
     @Override
-    public City update(Long id, City city) throws IdNotFoundException {
-        Optional<City> cityToUpdate = cityRepository.findById(id);
-
-        if (cityToUpdate.isPresent()) {
-            City updatedCity = cityToUpdate.get();
-            updatedCity.setName(city.getName());
-            return cityRepository.save(updatedCity);
-        }
-        throw new IdNotFoundException("No city with id: " + id + " was found!");
-    }
-
-    @Override
     public String delete(Long id) throws IdNotFoundException {
         Optional<City> city = cityRepository.findById(id);
 

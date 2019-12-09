@@ -16,8 +16,6 @@ public interface CityService {
 
     Optional<City> findByName(String name);
 
-    City update(Long id, City city) throws IdNotFoundException;
-
     String delete(Long id) throws IdNotFoundException;
 
 }
