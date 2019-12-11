@@ -22,13 +22,18 @@ public class CityController {
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity addCity(@RequestBody City city) {
         try {
             City existingCity = cityService.findByName(city.getName());
-
             return new ResponseEntity<>(existingCity, HttpStatus.OK);
         } catch (NotFoundException e) {
-            return new ResponseEntity<>(cityService.add(city), HttpStatus.CREATED);
+            try {
+                City newCity = cityService.add(city);
+                return new ResponseEntity<>(newCity, HttpStatus.CREATED);
+            } catch (IllegalArgumentException ex) {
+                return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+            }
         }
     }
 

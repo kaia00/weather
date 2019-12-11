@@ -6,6 +6,14 @@ import java.util.List;
 @Entity
 public class City {
 
+    public City() {
+    }
+
+    public City(String name, List<Weather> weathers) {
+        this.name = name;
+        this.weathers = weathers;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

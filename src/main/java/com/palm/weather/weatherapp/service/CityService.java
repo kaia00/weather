@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface CityService {
 
-    City add(City city);
+    City add(City city) throws IllegalArgumentException;
 
     List<City> findAll();
 
