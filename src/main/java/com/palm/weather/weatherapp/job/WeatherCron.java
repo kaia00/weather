@@ -35,7 +35,8 @@ public class WeatherCron {
         this.weatherMapper = weatherMapper;
     }
 
-    @Scheduled(fixedRate = 5000)
+    // 15 * 60 * 1000
+    @Scheduled(fixedRate = 900000)
     public void getScheduledWeather() {
 
 //        List<City> cities = cityService.findAll();

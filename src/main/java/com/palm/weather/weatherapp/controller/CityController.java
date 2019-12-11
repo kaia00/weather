@@ -3,13 +3,13 @@ package com.palm.weather.weatherapp.controller;
 import com.palm.weather.weatherapp.exception.IdNotFoundException;
 import com.palm.weather.weatherapp.model.City;
 import com.palm.weather.weatherapp.service.CityService;
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
-
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("cities")
 public class CityController {
@@ -23,10 +23,13 @@ public class CityController {
 
     @PostMapping
     public ResponseEntity addCity(@RequestBody City city) {
-        Optional<City> existingCity = cityService.findByName(city.getName());
+        try {
+            City existingCity = cityService.findByName(city.getName());
 
-        return existingCity.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
-                .orElseGet(() -> new ResponseEntity<>(cityService.add(city), HttpStatus.CREATED));
+            return new ResponseEntity<>(existingCity, HttpStatus.OK);
+        } catch (NotFoundException e) {
+            return new ResponseEntity<>(cityService.add(city), HttpStatus.CREATED);
+        }
     }
 
     @GetMapping

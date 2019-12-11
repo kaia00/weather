@@ -2,9 +2,9 @@ package com.palm.weather.weatherapp.service;
 
 import com.palm.weather.weatherapp.exception.IdNotFoundException;
 import com.palm.weather.weatherapp.model.City;
+import javassist.NotFoundException;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface CityService {
 
@@ -14,7 +14,7 @@ public interface CityService {
 
     City findById(Long id) throws IdNotFoundException;
 
-    Optional<City> findByName(String name);
+    City findByName(String name) throws NotFoundException;
 
     String delete(Long id) throws IdNotFoundException;
 

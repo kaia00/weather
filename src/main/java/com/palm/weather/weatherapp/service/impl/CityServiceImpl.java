@@ -4,6 +4,7 @@ import com.palm.weather.weatherapp.exception.IdNotFoundException;
 import com.palm.weather.weatherapp.model.City;
 import com.palm.weather.weatherapp.repository.CityRepository;
 import com.palm.weather.weatherapp.service.CityService;
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,8 +42,13 @@ public class CityServiceImpl implements CityService {
     }
 
     @Override
-    public Optional<City> findByName(String name) {
-        return cityRepository.findByName(name);
+    public City findByName(String name) throws NotFoundException {
+        Optional<City> city = cityRepository.findByName(name);
+
+        if (city.isPresent()) {
+            return city.get();
+        }
+        throw new NotFoundException("No city with name: " + name + " was found!");
     }
 
     @Override
