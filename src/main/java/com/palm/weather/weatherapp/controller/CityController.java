@@ -25,7 +25,7 @@ public class CityController {
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity addCity(@RequestBody City city) {
         try {
-            City existingCity = cityService.findByName(city.getName());
+            City existingCity = cityService.findByName(city.getName().trim());
             return new ResponseEntity<>(existingCity, HttpStatus.OK);
         } catch (NotFoundException e) {
             try {

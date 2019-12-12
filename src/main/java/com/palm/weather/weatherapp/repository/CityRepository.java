@@ -11,7 +11,7 @@ import java.util.Optional;
 @Repository
 public interface CityRepository extends JpaRepository<City, Long> {
 
-    @Query("SELECT city FROM City city WHERE city.name=:name")
+    @Query("SELECT city from City city where lower(city.name)=lower(:name)")
     Optional<City> findByName(@Param("name") String name);
 
 }
