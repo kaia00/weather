@@ -27,7 +27,7 @@ public class CityServiceImpl implements CityService {
 
     @Override
     public City add(City city) throws IllegalArgumentException {
-        String cityName = city.getName().toLowerCase().trim();
+        String cityName = city.getName().trim();
         city.setName(cityName);
         if (!cityName.isEmpty() && cityName.matches("^([a-zA-Z\\u0080-\\u024F]+(?:. |-| |'))*[a-zA-Z\\u0080-\\u024F]*$")) {
             City addedCity = cityRepository.save(city);
