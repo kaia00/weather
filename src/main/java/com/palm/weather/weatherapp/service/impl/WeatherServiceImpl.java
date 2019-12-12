@@ -40,9 +40,6 @@ public class WeatherServiceImpl implements WeatherService {
             Weather weather = weatherMapper.map(weatherResponse);
             weather.setDate(LocalDateTime.now());
 
-            System.out.println("Temp: " + weather.getTemperature() + " Humidity: " + weather.getHumidity() +
-                    " Windspeed: " + weather.getWindSpeed());
-
             return weather;
         }
         return null;

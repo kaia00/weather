@@ -10,11 +10,6 @@ import org.springframework.web.reactive.function.client.WebClient;
 @EnableScheduling
 public class WeatherAppApplication {
 
-    @Bean
-    public WebClient.Builder getWebClientBuilder() {
-        return WebClient.builder();
-    }
-
     public static void main(String[] args) {
         SpringApplication.run(WeatherAppApplication.class, args);
     }

@@ -9,23 +9,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.Collections;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
 class CityServiceImplTest {
 
-    private static final City correctCity = new City("Tallinn", Collections.emptyList());
-    private static final City correctCityWithSpace = new City("New York", Collections.emptyList());
-    private static final City correctCityWithDash = new City("New-york", Collections.emptyList());
-    private static final City correctCityWithNonLatinSymbols = new City("Võru", Collections.emptyList());
-    private static final City correctCityWithEmptySpaces = new City("    Tartu   ", Collections.emptyList());
-    private static final City correctCityWithDot = new City("St. Georges", Collections.emptyList());
-    private static final City wrongCityWithSymbols = new City("@@@@", Collections.emptyList());
-    private static final City wrongCityEmpty = new City("", Collections.emptyList());
-    private static final City wrongCityWithNumbers = new City("123123", Collections.emptyList());
+    private static final City correctCity = new City("Tallinn");
+    private static final City correctCityWithSpace = new City("New York");
+    private static final City correctCityWithDash = new City("New-york");
+    private static final City correctCityWithNonLatinSymbols = new City("Võru");
+    private static final City correctCityWithEmptySpaces = new City("    Tartu   ");
+    private static final City correctCityWithDot = new City("St. Georges");
+    private static final City wrongCityWithSymbols = new City("@@@@");
+    private static final City wrongCityEmpty = new City("");
+    private static final City wrongCityWithNumbers = new City("123123");
     @Autowired
     CityService cityService;
 

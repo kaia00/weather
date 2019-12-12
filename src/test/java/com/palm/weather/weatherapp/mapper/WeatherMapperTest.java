@@ -14,7 +14,7 @@ class WeatherMapperTest {
 
     private static final double TEMPERATURE = 55.6;
     private static final double WIND_SPEED = 10.1;
-    private final static double HUMIDITY = 44.4;
+    private static final double HUMIDITY = 44.4;
 
     @Test
     public void mapDomainToModel() {

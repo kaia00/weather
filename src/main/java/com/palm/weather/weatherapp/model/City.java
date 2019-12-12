@@ -6,14 +6,6 @@ import java.util.List;
 @Entity
 public class City {
 
-    public City() {
-    }
-
-    public City(String name, List<Weather> weathers) {
-        this.name = name;
-        this.weathers = weathers;
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,6 +14,14 @@ public class City {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "cityId")
     private List<Weather> weathers;
+    private boolean isAvailable = true;
+
+    public City() {
+    }
+
+    public City(String name) {
+        this.name = name;
+    }
 
     public Long getId() {
         return id;
@@ -45,5 +45,13 @@ public class City {
 
     public void setWeathers(List<Weather> weathers) {
         this.weathers = weathers;
+    }
+
+    public boolean isAvailable() {
+        return isAvailable;
+    }
+
+    public void setAvailable(boolean available) {
+        isAvailable = available;
     }
 }

@@ -1,6 +1,8 @@
 package com.palm.weather.weatherapp.controller;
 
+import com.palm.weather.weatherapp.dto.CityDTO;
 import com.palm.weather.weatherapp.exception.IdNotFoundException;
+import com.palm.weather.weatherapp.mapper.CityMapper;
 import com.palm.weather.weatherapp.model.City;
 import com.palm.weather.weatherapp.service.CityService;
 import javassist.NotFoundException;
@@ -15,21 +17,23 @@ import org.springframework.web.bind.annotation.*;
 public class CityController {
 
     private final CityService cityService;
+    private final CityMapper cityMapper;
 
     @Autowired
-    public CityController(CityService cityService) {
+    public CityController(CityService cityService, CityMapper cityMapper) {
         this.cityService = cityService;
+        this.cityMapper = cityMapper;
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity addCity(@RequestBody City city) {
+    public ResponseEntity addCity(@RequestBody CityDTO cityDTO) {
         try {
-            City existingCity = cityService.findByName(city.getName().trim());
+            City existingCity = cityService.findByName(cityDTO.getName().trim());
             return new ResponseEntity<>(existingCity, HttpStatus.OK);
         } catch (NotFoundException e) {
             try {
-                City newCity = cityService.add(city);
+                City newCity = cityService.add(cityMapper.map(cityDTO));
                 return new ResponseEntity<>(newCity, HttpStatus.CREATED);
             } catch (IllegalArgumentException ex) {
                 return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);

@@ -8,7 +8,10 @@ import com.palm.weather.weatherapp.service.CityService;
 import com.palm.weather.weatherapp.service.WeatherService;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.RestClientException;
 
 import java.util.List;
 import java.util.Optional;
@@ -81,8 +84,14 @@ public class CityServiceImpl implements CityService {
                     weather.setCityId(city.getId());
                     weatherService.add(weather);
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
+            } catch (RestClientException e) {
+                if (e instanceof HttpClientErrorException &&
+                        ((HttpClientErrorException) e).getStatusCode() == HttpStatus.NOT_FOUND) {
+                    city.setAvailable(false);
+                    cityRepository.save(city);
+                } else {
+                    e.printStackTrace();
+                }
             }
         }).run();
     }
