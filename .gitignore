@@ -34,5 +34,5 @@ build/
 .DS_Store
 
 .mvn/wrapper
-.mvnw
-.mvnw.cmd
+mvnw
+mvnw.cmd
